@@ -1,14 +1,11 @@
 #!/bin/bash
 
-export BROWSER_NAME=${BROWSER_NAME:=chrome}
-export TEST_SERVER_PORT=${TEST_SERVER_PORT:=8880}
-
 ./node_modules/.bin/webdriver-manager update;
 
 ./node_modules/.bin/http-server -p $TEST_SERVER_PORT --silent &
 HTTP_PID=$!
 
-./node_modules/.bin/webdriver-manager start &
+./node_modules/.bin/webdriver-manager start > /dev/null &
 DRIVER_PID=$!
 
 npm run build

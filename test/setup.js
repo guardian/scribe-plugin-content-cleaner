@@ -1,10 +1,16 @@
 var helpers = require('scribe-test-harness/helpers');
-var initializeScribe = helpers.initializeScribe.bind(null, '../../bower_components/scribe/scribe');
+var loadScribe = require('./helpers.js');
+var intialiseScribe = helpers.initializeScribe;
 
-before(function(){
+before(function() {
 
 });
 
-beforeEach(function(){
-  return initializeScribe();
+beforeEach(function() {
+    return intialiseScribe('scribe');
+});
+
+
+beforeEach(function() {
+    return loadScribe();
 });

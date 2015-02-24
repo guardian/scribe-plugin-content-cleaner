@@ -10,16 +10,19 @@ var givenContentOf = helpers.givenContentOf;
 
 var scribeNode;
 beforeEach(function() {
-  scribeNode = helpers.scribeNode;
+    scribeNode = helpers.scribeNode;
 });
 
 describe('scribe-plugin-content-cleaner', function() {
-    givenContentOf('<p>--</p>', function () {
+    givenContentOf('<p>content --</p>', function () {
+        console.log("Running it statement...");
         it('should replace the -- with an &emdash', function () {
+            console.log("Doing the async script...");
+            console.log("Scribe node: ", scribeNode);
             return scribeNode.getInnerHTML().then(function (innerHTML) {
-                expect(innerHTML).to.have('<p>&emdash;</p>');
+                console.log("HTML: ", innerHTML);
+                expect(innerHTML).to.have('<p>content &emdash;</p>');
             });
         });
     });
-
 });

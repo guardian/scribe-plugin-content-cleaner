@@ -24,17 +24,24 @@
   require.config({
     baseUrl: '../',
     paths: {
-      'scribe': 'bower_components/scribe/scribe',
-       'scribe-plugin-content-cleaner': "dist/scribe-plugin-content-cleaner"
+        'scribe': 'bower_components/scribe/scribe',
+        'scribe-plugin-content-cleaner': "dist/scribe-plugin-content-cleaner",
+        'scribe-plugin-toolbar':
+        "bower_components/scribe-plugin-toolbar/scribe-plugin-toolbar"
+
     }
   });
-  require(['scribe','scribe-plugin-content-cleaner'],
-          function(Scribe, scribeContentCleaner){
-              debugger;
+  require(['scribe','scribe-plugin-content-cleaner', 'scribe-plugin-toolbar'],
+          function(Scribe, scribeContentCleaner, scribePluginToolbar) {
     window.Scribe = Scribe;
     window.scribe = new Scribe(document.querySelector('.scribe'));
-    scribe.use(scribeContentCleaner());
+    scribe.use(scribePluginToolbar(document.querySelector('.rte-toolbar')));
+    scribe.use(scribeContentCleaner(scribe));
+    scribe.setContent('<p>Hello--World   !<\/p>');
   });
 </script>
+<div class="rte-toolbar">
+  <button data-command-name="cleanup">Cleanup</button>
+</div>
 </body>
 </html>
