@@ -29,7 +29,7 @@
     "test-chrome": "TEST_SERVER_PORT=9090 BROWSER_NAME='chrome' ./run-tests.sh",
     "test": "npm run test-chrome",
     "postinstall": "bower install",
-    "build": "browserify src/scribe-plugin-content-cleaner --standalone scribe-plugin-content-cleaner -t babelify > dist/scribe-plugin-content-cleaner.js"
+    "build": "browserify src/scribe-plugin-content-cleaner --standalone scribe-plugin-content-cleaner -t babelify > build/scribe-plugin-content-cleaner.js"
   },
   "devDependencies": {
     "babel": "^4.4.5",

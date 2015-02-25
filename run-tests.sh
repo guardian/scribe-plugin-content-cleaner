@@ -9,7 +9,7 @@ HTTP_PID=$!
 DRIVER_PID=$!
 
 npm run build
-node test/runner
+babel-node test/runner
 
 TEST_RUNNER_EXIT=$?
 

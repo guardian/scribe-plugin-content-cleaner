@@ -9,8 +9,8 @@ module.exports = function (scribe) {
     var reducers = [function (text) {
         return text.replace(/\s+/g, " ");
     }, function (text) {
-        var rep = text.replace(/--/g, "&emdash;");
-        rep.replace("Hello", "&emdash;");
+        var rep = text.replace(/--/g, "&mdash;");
+        rep.replace("Hello", "&mdash;");
         return rep;
     }];
 

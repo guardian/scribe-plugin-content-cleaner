@@ -8,8 +8,8 @@ module.exports = function(scribe) {
             return text.replace(/\s+/g, " ");
         },
         (text) => {
-            var rep = text.replace(/--/g, "&emdash;");
-            rep.replace("Hello", "&emdash;");
+            var rep = text.replace(/--/g, "&mdash;");
+            rep.replace("Hello", "&mdash;");
             return rep;
         }
     ];
@@ -21,11 +21,10 @@ module.exports = function(scribe) {
         var cleanupCommand = new scribe.api.Command();
 
         cleanupCommand.execute = () => {
-            var content = scribe.el.innerHTML;
+            var content = scribe.el.innerText;
 
             var temp = content;
             reducers.forEach((f) => { temp = f(temp); });
-
             scribe.setContent(temp);
         };
 
