@@ -37,21 +37,6 @@ describe('scribe-plugin-content-cleaner', () => {
     });
 
 
-    givenContentOf('<p>content -</p>', () => {
-        when('the command is executed', () => {
-            beforeEach(() =>  {
-                scribeNode.click();
-                return executeCommand('cleanup');
-            });
-
-            it('should replace the - with an emdash', () => {
-                return scribeNode.getInnerHTML().then((innerHTML) => {
-                    expect(innerHTML).to.include('<p>content —</p>');
-                });
-            });
-        });
-    });
-
     givenContentOf('<p>word  a   b</p>', () => {
         when('the command is executed', () => {
             beforeEach(() =>  {
@@ -68,7 +53,7 @@ describe('scribe-plugin-content-cleaner', () => {
         });
     });
 
-    givenContentOf('<p><br/><br><br/></p>', () => {
+    givenContentOf('<p><br/><br><br/><br/></p>', () => {
         when('the command is executed', () => {
             beforeEach(() =>  {
                 scribeNode.click();
