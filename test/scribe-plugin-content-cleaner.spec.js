@@ -53,7 +53,7 @@ describe('scribe-plugin-content-cleaner', () => {
         });
     });
 
-    givenContentOf('<p><br/><br><br/><br/></p>', () => {
+    givenContentOf('<p><br/><br><br/></p>', () => {
         when('the command is executed', () => {
             beforeEach(() =>  {
                 scribeNode.click();
