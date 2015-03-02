@@ -8,8 +8,8 @@ module.exports = function(scribe) {
             return text.replace(/\s+/g, " ");
         },
         (text) => {
-            var rep = text.replace(/--/g, "&mdash;");
-            return rep;
+            return text.replace(/--/g, "&mdash;");
+
 
         },
         (test) => {
