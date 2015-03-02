@@ -1,49 +1,50 @@
 {
-  "name": "scribe-plugin-content-cleaner",
-  "description": "Clean up content in a scribe instance",
-  "version": "0.0.1",
-  "homepage": "https://github.com/guardian/scribe-plugin-content-cleaner",
-  "author": {
-    "name": "hmgibson23",
-    "email": "hugo.gibson@yahoo.co.uk"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git://github.com/guardian/scribe-plugin-content-cleaner.git"
-  },
-  "bugs": {
-    "url": "https://github.com/guardian/scribe-plugin-content-cleaner/issues"
-  },
-  "licenses": [
-    {
-      "type": "MIT",
-      "url": "https://github.com/guardian/scribe-plugin-content-cleaner/blob/master/LICENSE-MIT"
-    }
-  ],
-  "main": "lib/scribe-plugin-content-cleaner",
-  "engines": {
-    "node": ">= 0.10.0"
-  },
-  "scripts": {
-    "test-firefox": "TEST_SERVER_PORT=9090 BROWSER_NAME='firefox' ./run-tests.sh",
-    "test-chrome": "TEST_SERVER_PORT=9090 BROWSER_NAME='chrome' ./run-tests.sh",
-    "test": "npm run test-chrome",
-    "postinstall": "bower install",
-    "build": "browserify src/scribe-plugin-content-cleaner --standalone scribe-plugin-content-cleaner -t babelify > build/scribe-plugin-content-cleaner.js"
-  },
-  "devDependencies": {
-    "babel": "^4.4.5",
-    "babelify": "^5.0.3",
-    "bower": "^1.3.12",
-    "browserify": "^9.0.3",
-    "chai": "1.9.1",
-    "glob": "^4.1.5",
-    "http-server": "^0.7.1",
-    "lodash": "^2.4.1",
-    "mocha": "^2.0.1",
-    "scribe-test-harness": "^0.0.6",
-    "selenium-webdriver": "^2.44.0",
-    "webdriver-manager": "^1.0.1"
-  },
-  "keywords": []
+    "name": "scribe-plugin-content-cleaner",
+    "description": "Clean up content in a scribe instance",
+    "version": "0.0.1",
+    "homepage": "https://github.com/guardian/scribe-plugin-content-cleaner",
+    "author": {
+        "name": "hmgibson23",
+        "email": "hugo.gibson@yahoo.co.uk"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git://github.com/guardian/scribe-plugin-content-cleaner.git"
+    },
+    "bugs": {
+        "url": "https://github.com/guardian/scribe-plugin-content-cleaner/issues"
+    },
+    "licenses": [
+        {
+            "type": "MIT",
+            "url": "https://github.com/guardian/scribe-plugin-content-cleaner/blob/master/LICENSE-MIT"
+        }
+    ],
+    "main": "lib/scribe-plugin-content-cleaner",
+    "engines": {
+        "node": ">= 0.10.0"
+    },
+    "scripts": {
+        "test-firefox": "TEST_SERVER_PORT=9090 BROWSER_NAME='firefox' ./run-tests.sh",
+        "test-chrome": "TEST_SERVER_PORT=9090 BROWSER_NAME='chrome' ./run-tests.sh",
+        "test": "npm run test-chrome",
+        "postinstall": "bower install",
+        "build": "browserify src/scribe-plugin-content-cleaner --standalone scribe-plugin-content-cleaner -t babelify > build/scribe-plugin-content-cleaner.js"
+        "build-prod": "browserify src/scribe-plugin-content-cleaner --standalone scribe-plugin-content-cleaner -t babelify > build/scribe-plugin-content-cleaner.js uglifyjs ./build/scribe-plugin-content-cleaner.js > ./build/scribe-plugin-content-cleaner.min.js"
+    },
+    "devDependencies": {
+        "babel": "^4.4.5",
+        "babelify": "^5.0.3",
+        "bower": "^1.3.12",
+        "browserify": "^9.0.3",
+        "chai": "1.9.1",
+        "glob": "^4.1.5",
+        "http-server": "^0.7.1",
+        "lodash": "^2.4.1",
+        "mocha": "^2.0.1",
+        "scribe-test-harness": "^0.0.6",
+        "selenium-webdriver": "^2.44.0",
+        "webdriver-manager": "^1.0.1"
+    },
+    "keywords": []
 }
