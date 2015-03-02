@@ -3,7 +3,7 @@ module.exports = function(scribe) {
 
     var COMMAND_NAME = "cleanup";
 
-    var reducers = [
+    var filters = [
         (text) => {
             return text.replace(/\s+/g, " ");
         },
@@ -11,6 +11,9 @@ module.exports = function(scribe) {
             var rep = text.replace(/--/g, "&mdash;");
             return rep.replace(/-/g, "&mdash;");
 
+        },
+        (test) => {
+            return test.replace(/(<br\s*\/?>){3,}/gi, '<br>');
         }
     ];
 
@@ -23,8 +26,10 @@ module.exports = function(scribe) {
         cleanupCommand.execute = () => {
             var content = scribe.el.innerText;
 
-            var temp = content;
-            reducers.forEach((f) => { temp = f(temp); });
+            var temp = filters.reduce((val, fn) => {
+                return fn(val);
+            }, content);
+
             scribe.setContent(temp);
         };
 
