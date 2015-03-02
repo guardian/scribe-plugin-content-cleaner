@@ -1,26 +1,38 @@
-module.exports = function(config) {
+module.exports = function(scribe) {
+    'use strict';
 
-    var replacers = [
+    var COMMAND_NAME = "cleanup";
+
+    var filters = [
         (text) => {
-            text.replace(/\s+/g, " ");
+            return text.replace(/\s+/g, " ");
         },
         (text) => {
-            text.replace("--", "&emdash;");
-            text.replace("-", "&emdash;");
-        }];
+            var rep = text.replace(/--/g, "&mdash;");
+            return rep.replace(/-/g, "&mdash;");
 
-  return function(scribe) {
-      // for now this just exposes a list of
-      // commands to do the text cleanup, rather than doing it some
-      // weird way with sanitizers
-      var cleanupCommand = new scribe.api.Command('cleanup');
+        },
+        (test) => {
+            return test.replace(/(<br\s*\/?>){3,}/gi, '<br>');
+        }
+    ];
 
-      cleanupCommand.execute = () => {
-          var content = scribe.el.innerText;
-          replacers.forEach(
-              (f) => { f(content); }
-          );
-      };
+    return function (scribe) {
+        // for now this just exposes a list of
+        // commands to do the text cleanup, rather than doing it some
+        // weird way with sanitizers
+        var cleanupCommand = new scribe.api.Command();
 
-  };
+        cleanupCommand.execute = () => {
+            var content = scribe.el.innerText;
+
+            var temp = filters.reduce((val, fn) => {
+                return fn(val);
+            }, content);
+
+            scribe.setContent(temp);
+        };
+
+        scribe.commands[COMMAND_NAME] = cleanupCommand;
+    };
 };

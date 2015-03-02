@@ -30,7 +30,6 @@
   });
   require(['scribe','scribe-plugin-content-cleaner'],
           function(Scribe, scribeContentCleaner){
-              debugger;
     window.Scribe = Scribe;
     window.scribe = new Scribe(document.querySelector('.scribe'));
     scribe.use(scribeContentCleaner());
