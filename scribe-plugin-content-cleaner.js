@@ -9,8 +9,7 @@ module.exports = function (scribe) {
     var filters = [function (text) {
         return text.replace(/\s+/g, " ");
     }, function (text) {
-        var rep = text.replace(/--/g, "&mdash;");
-        return rep.replace(/-/g, "&mdash;");
+        return text.replace(/--/g, "&mdash;");
     }, function (test) {
         return test.replace(/(<br\s*\/?>){3,}/gi, "<br>");
     }];
