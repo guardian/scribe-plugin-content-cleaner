@@ -18,7 +18,7 @@ module.exports = function (scribe) {
         // for now this just exposes a list of
         // commands to do the text cleanup, rather than doing it some
         // weird way with sanitizers
-        var cleanupCommand = new scribe.api.Command();
+        var cleanupCommand = new scribe.api.Command("Cleanup");
 
         cleanupCommand.execute = function () {
             var content = scribe.el.innerText;
