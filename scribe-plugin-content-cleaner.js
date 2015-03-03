@@ -30,6 +30,10 @@ module.exports = function (scribe) {
             scribe.setContent(temp);
         };
 
+        cleanupCommand.queryEnabled = function () {
+            return true;
+        };
+
         scribe.commands[COMMAND_NAME] = cleanupCommand;
     };
 };
