@@ -30,7 +30,7 @@
         "test": "npm run test-chrome",
         "postinstall": "bower install",
         "build": "browserify src/scribe-plugin-content-cleaner --standalone scribe-plugin-content-cleaner -t babelify > ./build/scribe-plugin-content-cleaner.js",
-        "build-prod": "npm run build && uglifyjs ./build/scribe-plugin-content-cleaner.js > ./build/scribe-plugin-content-cleaner.min.js"
+        "build-prod": "npm run build && uglifyjs ./build/scribe-plugin-content-cleaner.js --source-map ./build/scribe-plugin-content-cleaner.js.map > ./build/scribe-plugin-content-cleaner.min.js"
     },
     "devDependencies": {
         "babel": "^4.4.5",
