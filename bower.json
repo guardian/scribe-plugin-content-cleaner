@@ -8,12 +8,12 @@
   "main": "dist/scribe-plugin-content-cleaner.js",
   "dependencies": {
     "scribe": "~1.2.2",
-    "scribe-plugin-toolbar": "~0.1.4",
     "scribe-common": "~0.0.11",
     "lodash-amd": "~2.4.1"
   },
   "devDependencies": {
     "require": "*",
+    "scribe-plugin-toolbar": "~0.1.4",
     "requirejs": "~2.1.16"
   },
   "ignore": [
