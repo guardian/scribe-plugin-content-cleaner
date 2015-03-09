@@ -5,7 +5,7 @@
   "homepage": "https://github.com/guardian/scribe-plugin-content-cleaner",
   "license": "MIT",
   "copyright": "hmgibson23",
-  "main": "dist/scribe-plugin-content-cleaner.js",
+  "main": "scribe-plugin-content-cleaner.js",
   "dependencies": {
     "scribe": "~1.2.2",
     "scribe-common": "~0.0.11",
