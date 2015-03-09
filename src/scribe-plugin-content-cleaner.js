@@ -12,8 +12,8 @@ module.exports = function(scribe) {
 
 
         },
-        (test) => {
-            return test.replace(/(<br\s*\/?>){3,}/gi, '<br>');
+        (text) => {
+            return text.replace(/(<br\s*\/?>){3,}/gi, '<br>');
         }
     ];
 
@@ -24,13 +24,13 @@ module.exports = function(scribe) {
         var cleanupCommand = new scribe.api.Command('Cleanup');
 
         cleanupCommand.execute = () => {
-            var content = scribe.el.innerText;
+            var content = scribe.el.innerHTML;
 
             var temp = filters.reduce((val, fn) => {
                 return fn(val);
             }, content);
 
-            scribe.setContent(temp);
+            scribe.setHTML(temp, true);
         };
 
         cleanupCommand.queryEnabled = () => {
