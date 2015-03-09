@@ -10,8 +10,8 @@ module.exports = function (scribe) {
         return text.replace(/\s+/g, " ");
     }, function (text) {
         return text.replace(/--/g, "&mdash;");
-    }, function (test) {
-        return test.replace(/(<br\s*\/?>){3,}/gi, "<br>");
+    }, function (text) {
+        return text.replace(/(<br\s*\/?>){3,}/gi, "<br>");
     }];
 
     return function (scribe) {
@@ -21,13 +21,13 @@ module.exports = function (scribe) {
         var cleanupCommand = new scribe.api.Command("Cleanup");
 
         cleanupCommand.execute = function () {
-            var content = scribe.el.innerText;
+            var content = scribe.el.innerHTML;
 
             var temp = filters.reduce(function (val, fn) {
                 return fn(val);
             }, content);
 
-            scribe.setContent(temp);
+            scribe.setHTML(temp, true);
         };
 
         cleanupCommand.queryEnabled = function () {
