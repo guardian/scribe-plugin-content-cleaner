@@ -53,6 +53,39 @@ describe('scribe-plugin-content-cleaner', () => {
         });
     });
 
+    givenContentOf('<p>word&nbsp;&nbsp;a&nbsp;&nbsp;&nbsp;b</p>', () => {
+        when('the command is executed', () => {
+            beforeEach(() =>  {
+                scribeNode.click();
+                return executeCommand('cleanup');
+            });
+
+
+            it('should make all double (or more) &nbsps; single spaces', () => {
+                return scribeNode.getInnerHTML().then((innerHTML) => {
+                    expect(innerHTML).to.include('<p>word a b</p>');
+                });
+            });
+        });
+    });
+
+    givenContentOf('<p>word</p><p> </p><p><br></p>', () => {
+        when('the command is executed', () => {
+            beforeEach(() =>  {
+                scribeNode.click();
+                return executeCommand('cleanup');
+            });
+
+
+            it('should remove all empty paragraphs', () => {
+                return scribeNode.getInnerHTML().then((innerHTML) => {
+                    expect(innerHTML).to.include('<p>word</p>');
+                });
+            });
+        });
+    });
+
+
     givenContentOf('<p><br><br/><br><br/></p>', () => {
         when('the command is executed', () => {
             beforeEach(() =>  {

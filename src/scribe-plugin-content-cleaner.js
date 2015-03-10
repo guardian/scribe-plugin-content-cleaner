@@ -5,15 +5,19 @@ module.exports = function(scribe) {
 
     var filters = [
         (text) => {
+                return text.replace(/(&nbsp;)/gi, " ");
+        },
+        (text) => {
             return text.replace(/\s+/g, " ");
         },
         (text) => {
             return text.replace(/--/g, "&mdash;");
-
-
         },
         (text) => {
             return text.replace(/(<br\s*\/?>){3,}/gi, '<br>');
+        },
+        (text) => {
+            return text.replace(/<p>\s*<\/p>/, '');
         }
     ];
 
