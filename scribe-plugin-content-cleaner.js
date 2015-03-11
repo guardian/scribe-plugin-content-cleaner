@@ -7,11 +7,15 @@ module.exports = function (scribe) {
     var COMMAND_NAME = "cleanup";
 
     var filters = [function (text) {
+        return text.replace(/(&nbsp;)/gi, " ");
+    }, function (text) {
         return text.replace(/\s+/g, " ");
     }, function (text) {
         return text.replace(/--/g, "&mdash;");
     }, function (text) {
         return text.replace(/(<br\s*\/?>){3,}/gi, "<br>");
+    }, function (text) {
+        return text.replace(/<p>\s*<\/p>/, "");
     }];
 
     return function (scribe) {
