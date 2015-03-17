@@ -17,7 +17,9 @@ module.exports = function(scribe) {
             return text.replace(/(<br\s*\/?>){3,}/gi, '<br>');
         },
         (text) => {
-            return text.replace(/<p>\s*<\/p>/, '');
+            // TODO: Someone better at regex combine these two into one
+            let temp = text.replace(/<p><br\s*\/?><\/p>/, '');
+            return temp.replace(/<p>\s*?<br\s*\/?><\/p>/, '');
         }
     ];
 
@@ -28,9 +30,9 @@ module.exports = function(scribe) {
         var cleanupCommand = new scribe.api.Command('Cleanup');
 
         cleanupCommand.execute = () => {
-            var content = scribe.el.innerHTML;
+            let content = scribe.el.innerHTML;
 
-            var temp = filters.reduce((val, fn) => {
+            let temp = filters.reduce((val, fn) => {
                 return fn(val);
             }, content);
 

@@ -77,16 +77,22 @@ describe('scribe-plugin-content-cleaner', () => {
             });
 
 
-            it('should remove all empty paragraphs', () => {
+            it('should remove all paragraphs with only spaces', () => {
                 return scribeNode.getInnerHTML().then((innerHTML) => {
-                    expect(innerHTML).to.include('<p>word</p>');
+                    expect(innerHTML).to.not.include('<p> <br></p>');
+                });
+            });
+
+            it('should remove all paragraphs with only BRs', () => {
+                return scribeNode.getInnerHTML().then((innerHTML) => {
+                    expect(innerHTML).to.not.include('<p><br></p>');
                 });
             });
         });
     });
 
 
-    givenContentOf('<p><br><br/><br><br/></p>', () => {
+    givenContentOf('<p>test<br><br/><br><br/>word</p>', () => {
         when('the command is executed', () => {
             beforeEach(() =>  {
                 scribeNode.click();
@@ -96,7 +102,7 @@ describe('scribe-plugin-content-cleaner', () => {
 
             it('should leave only a single BR', () => {
                 return scribeNode.getInnerHTML().then((innerHTML) => {
-                    expect(innerHTML).to.include('<p><br></p>');
+                    expect(innerHTML).to.include('<p>test<br>word</p>');
                 });
             });
         });
