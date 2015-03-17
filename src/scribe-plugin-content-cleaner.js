@@ -17,9 +17,7 @@ module.exports = function(scribe) {
             return text.replace(/(<br\s*\/?>){3,}/gi, '<br>');
         },
         (text) => {
-            // TODO: Someone better at regex combine these two into one
-            let temp = text.replace(/<p><br\s*\/?><\/p>/, '');
-            return temp.replace(/<p>\s*?<br\s*\/?><\/p>/, '');
+            return text.replace(/<p>\s*?<br\s*\/?><\/p>/g, '');
         }
     ];
 
