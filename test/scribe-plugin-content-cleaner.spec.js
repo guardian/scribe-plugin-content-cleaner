@@ -21,7 +21,7 @@ beforeEach(function() {
 });
 
 describe('scribe-plugin-content-cleaner', () => {
-    givenContentOf('<p>content --</p>', () => {
+    givenContentOf('<p>content -- </p>', () => {
         when('the command is executed', () => {
             beforeEach(() =>  {
                 scribeNode.click();
@@ -30,7 +30,7 @@ describe('scribe-plugin-content-cleaner', () => {
 
             it('should replace the -- with an emdash', () => {
                 return scribeNode.getInnerHTML().then((innerHTML) => {
-                    expect(innerHTML).to.include('<p>content —</p>');
+                    expect(innerHTML).to.include('<p>content — </p>');
                 });
             });
         });
@@ -124,7 +124,7 @@ describe('scribe-plugin-content-cleaner', () => {
         });
     });
 
-    givenContentOf('<p>some <gu-note>content</gu-note></p>', () => {
+    givenContentOf('<p>some <gu-note class="note note--start note—-end">content</gu-note></p>', () => {
         when('the command is executed', () => {
             beforeEach(() =>  {
                 scribeNode.click();
@@ -133,9 +133,11 @@ describe('scribe-plugin-content-cleaner', () => {
 
             it('should not remove any notes', () => {
                 return scribeNode.getInnerHTML().then((innerHTML) => {
-                    expect(innerHTML).to.include('<p>some <gu-note>content</gu-note></p>');
+                    expect(innerHTML).to.include('<p>some <gu-note class="note note--start note—-end">content</gu-note></p>');
                 });
             });
+
+
         });
     });
 

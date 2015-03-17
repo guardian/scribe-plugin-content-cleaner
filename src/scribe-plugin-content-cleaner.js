@@ -11,7 +11,7 @@ module.exports = function(scribe) {
             return text.replace(/\s+/g, " ");
         },
         (text) => {
-            return text.replace(/--/g, "&mdash;");
+            return text.replace(/ -- /g, " &mdash; ");
         },
         (text) => {
             return text.replace(/(<br\s*\/?>){3,}/gi, '<br>');
@@ -20,6 +20,7 @@ module.exports = function(scribe) {
             return text.replace(/<p>\s*?<br\s*\/?><\/p>/g, '');
         }
     ];
+
 
     return function (scribe) {
         // for now this just exposes a list of
