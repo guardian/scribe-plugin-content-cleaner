@@ -30,9 +30,9 @@ module.exports = function(scribe) {
         var cleanupCommand = new scribe.api.Command('Cleanup');
 
         cleanupCommand.execute = () => {
-            let content = scribe.el.innerHTML;
+            var content = scribe.el.innerHTML;
 
-            let temp = filters.reduce((val, fn) => {
+            var temp = filters.reduce((val, fn) => {
                 return fn(val);
             }, content);
 
