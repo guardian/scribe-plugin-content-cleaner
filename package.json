@@ -25,10 +25,11 @@
         "node": ">= 0.10.0"
     },
     "scripts": {
-        "test-firefox": "TEST_SERVER_PORT=9090 BROWSER_NAME='firefox' ./run-tests.sh",
+         "test-firefox": "TEST_SERVER_PORT=9090 BROWSER_NAME='firefox' ./run-tests.sh",
         "test-chrome": "TEST_SERVER_PORT=9090 BROWSER_NAME='chrome' ./run-tests.sh",
         "test": "npm run test-chrome",
         "postinstall": "bower install",
+        "prebuild": "mkdir build",
         "build": "browserify src/scribe-plugin-content-cleaner --standalone scribe-plugin-content-cleaner -t babelify > ./build/scribe-plugin-content-cleaner.js",
         "build-prod": "npm run build && uglifyjs ./build/scribe-plugin-content-cleaner.js --source-map ./build/scribe-plugin-content-cleaner.min.js.map > ./build/scribe-plugin-content-cleaner.min.js"
     },
