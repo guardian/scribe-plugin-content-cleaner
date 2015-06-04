@@ -24,6 +24,12 @@ module.exports = function(scribe) {
         }
     ];
 
+    const tagContentFilters = [
+        (text) => {
+            return text.replace(/(\w)--(\w)/g, " &ndash; ");
+        }
+    ];
+
 
     return function (scribe) {
         // for now this just exposes a list of
@@ -39,9 +45,20 @@ module.exports = function(scribe) {
             }, content);
 
             const parser = new DOMParser();
-            const tree = parser.parseFromString(temp, "text/html");
+            const doc = parser.parseFromString(temp, "text/html");
 
-            scribe.setHTML(temp, true);
+            for( var i = 0; i < doc.body.children.length; i++) {
+                const currentElement = doc.body.children[i];
+                if(currentElement.children === 0) {
+                    const text = currentElement.innerHTML;
+                    var temp = tagContentFilters.reduce((val, fn) => {
+                        return fn(val);
+                        }, text);
+                    currentElement.innerHTML = temp;
+                }
+            }
+
+            scribe.setHTML(doc.body.innerHTML, true);
         };
 
         cleanupCommand.queryEnabled = () => {
