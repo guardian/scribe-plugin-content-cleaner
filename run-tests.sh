@@ -9,12 +9,12 @@ HTTP_PID=$!
 DRIVER_PID=$!
 
 npm run build
-babel-node test/runner
+node_modules/babel/bin/babel-node test/runner
 
 TEST_RUNNER_EXIT=$?
 
 kill $HTTP_PID
-kill $DRIVER_PID
+#kill $DRIVER_PID
 
 if [ $TEST_RUNNER_EXIT == "0" ]; then
     exit 0
