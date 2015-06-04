@@ -14,6 +14,9 @@ module.exports = function(scribe) {
             return text.replace(/ -- /g, " &ndash; ");
         },
         (text) => {
+            return text.replace(/ - /g, " &ndash; ");
+        },
+        (text) => {
             return text.replace(/(<br\s*\/?>){3,}/gi, '<br>');
         },
         (text) => {
@@ -34,6 +37,9 @@ module.exports = function(scribe) {
             var temp = filters.reduce((val, fn) => {
                 return fn(val);
             }, content);
+
+            const parser = new DOMParser();
+            const tree = parser.parseFromString(temp, "text/html");
 
             scribe.setHTML(temp, true);
         };

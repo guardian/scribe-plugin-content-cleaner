@@ -20,6 +20,11 @@ beforeEach(function() {
     scribeNode = helpers.scribeNode;
 });
 
+function clickCleanup() {
+    scribeNode.click();
+    return executeCommand('cleanup');
+}
+
 describe('scribe-plugin-content-cleaner', () => {
     givenContentOf('<p>content -- </p>', () => {
         when('the command is executed', () => {
@@ -34,6 +39,21 @@ describe('scribe-plugin-content-cleaner', () => {
                 });
             });
         });
+    });
+
+    givenContentOf('<p>1900 - 1950</p>', () => {
+        when('the command is executed', () => {
+            beforeEach(() =>  {
+                scribeNode.click();
+                return executeCommand('cleanup');
+            });
+
+            it('should add spacing and an endash', () => {
+                return scribeNode.getInnerHTML().then((innerHTML) => {
+                    expect(innerHTML).to.include('<p>1900 – 1950</p>');
+                })
+            });
+        })
     });
 
 
