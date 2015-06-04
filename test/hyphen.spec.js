@@ -38,81 +38,24 @@ describe('Hyphen cleaining', () => {
         });
     });
 
-    givenContentOf('<p>1900 - 1950</p>', () => {
-        when('the command is executed', () => {
-            beforeEach(clickCleanup);
+    ['<p>1900 - 1950</p>',
+        '<p>1900-1950</p>',
+        '<p>1900 -- 1950</p>',
+        '<p>1900--1950</p>',
+        '<p>1900 --1950</p>',
+        '<p>1900-- 1950</p>'].forEach((inputString) => {
+        givenContentOf(inputString, () => {
+            when('the command is executed', () => {
+                beforeEach(clickCleanup);
 
-            it('should add spacing and an endash', () => {
-                return scribeNode.getInnerHTML().then((innerHTML) => {
-                    expect(innerHTML).to.include('<p>1900 – 1950</p>');
-                })
-            });
-        })
+                it('should add spacing and an endash', () => {
+                    return scribeNode.getInnerHTML().then((innerHTML) => {
+                        expect(innerHTML).to.include('<p>1900 – 1950</p>');
+                    })
+                });
+            })
+        });       
     });
-
-
-    givenContentOf('<p>1900 -- 1950</p>', () => {
-        when('the command is executed', () => {
-            beforeEach(clickCleanup);
-
-            it('should add spacing and an endash', () => {
-                return scribeNode.getInnerHTML().then((innerHTML) => {
-                    expect(innerHTML).to.include('<p>1900 – 1950</p>');
-                })
-            });
-        })
-    });
-
-    givenContentOf('<p>1900--1950</p>', () => {
-        when('the command is executed', () => {
-            beforeEach(clickCleanup);
-
-            it('should add spacing and an endash', () => {
-                return scribeNode.getInnerHTML().then((innerHTML) => {
-                    expect(innerHTML).to.include('<p>1900 – 1950</p>');
-                })
-            });
-        })
-    });
-
-
-    givenContentOf('<p>1900 --1950</p>', () => {
-        when('the command is executed', () => {
-            beforeEach(clickCleanup);
-
-            it('should add spacing and an endash', () => {
-                return scribeNode.getInnerHTML().then((innerHTML) => {
-                    expect(innerHTML).to.include('<p>1900 – 1950</p>');
-                })
-            });
-        })
-    });
-
-
-    givenContentOf('<p>1900-- 1950</p>', () => {
-        when('the command is executed', () => {
-            beforeEach(clickCleanup);
-
-            it('should add spacing and an endash', () => {
-                return scribeNode.getInnerHTML().then((innerHTML) => {
-                    expect(innerHTML).to.include('<p>1900 – 1950</p>');
-                })
-            });
-        })
-    });
-
-    givenContentOf('<p>1900-1950</p>', () => {
-        when('the command is executed', () => {
-            beforeEach(clickCleanup);
-
-            it('should add spacing and an endash', () => {
-                return scribeNode.getInnerHTML().then((innerHTML) => {
-                    expect(innerHTML).to.include('<p>1900 – 1950</p>');
-                })
-            });
-        })
-    });
-
 
     givenContentOf('<p>happy--ending</p>', () => {
         when('the command is executed', () => {
@@ -126,7 +69,9 @@ describe('Hyphen cleaining', () => {
         })
     });
 
-    ['<p>1607–1833</p>', '<p>1607– 1833</p>', '<p>1607 –1833</p>'].forEach((inputString) => {
+    ['<p>1607–1833</p>',
+        '<p>1607– 1833</p>',
+        '<p>1607 –1833</p>'].forEach((inputString) => {
         givenContentOf(inputString, () => {
             when('the command is executed', () => {
                 beforeEach(clickCleanup);
