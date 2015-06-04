@@ -27,7 +27,8 @@ module.exports = function(scribe) {
         },
         (text) => {
             return text.replace(/(\d)-(\d)/g, "$1 &ndash; $2");
-        }
+        },
+        (text) => text.replace(/(\w)<br\s*?>(\w)/, "$1 $2")
     ];
 
 

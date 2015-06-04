@@ -25,7 +25,7 @@ function clickCleanup() {
     return executeCommand('cleanup');
 }
 
-describe('scribe-plugin-content-cleaner', () => {
+describe('Hyphen cleaining', () => {
     givenContentOf('<p>content -- </p>', () => {
         when('the command is executed', () => {
             beforeEach(clickCleanup);

@@ -71,21 +71,7 @@ describe('scribe-plugin-content-cleaner', () => {
             });
         });
     });
-
-
-    givenContentOf('<p>test<br><br/><br><br/>word</p>', () => {
-        when('the command is executed', () => {
-            beforeEach(clickCleanup);
-
-
-            it('should leave only a single BR', () => {
-                return scribeNode.getInnerHTML().then((innerHTML) => {
-                    expect(innerHTML).to.include('<p>test<br>word</p>');
-                });
-            });
-        });
-    });
-
+    
     givenContentOf('<p>some content</p><p>and more</p>', () => {
         when('the command is executed', () => {
             beforeEach(clickCleanup);
