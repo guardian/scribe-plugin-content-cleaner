@@ -57,18 +57,6 @@ describe('Hyphen cleaining', () => {
         });       
     });
 
-    givenContentOf('<p>happy--ending</p>', () => {
-        when('the command is executed', () => {
-            beforeEach(clickCleanup);
-
-            it('should add spacing and an endash', () => {
-                return scribeNode.getInnerHTML().then((innerHTML) => {
-                    expect(innerHTML).to.include('<p>happy – ending</p>');
-                })
-            });
-        })
-    });
-
     ['<p>1607–1833</p>',
         '<p>1607– 1833</p>',
         '<p>1607 –1833</p>'].forEach((inputString) => {
@@ -84,4 +72,32 @@ describe('Hyphen cleaining', () => {
             })
         });
     });
+
+
+    givenContentOf('<p>happy--ending</p>', () => {
+        when('the command is executed', () => {
+            beforeEach(clickCleanup);
+
+            it('should add spacing and an endash', () => {
+                return scribeNode.getInnerHTML().then((innerHTML) => {
+                    expect(innerHTML).to.include('<p>happy – ending</p>');
+                })
+            });
+        })
+    });
+
+
+    givenContentOf('<p>happy--ending mother-in-law 1923 -- 1926 <i>Hello --Joe Smith</i></p><p>Pages 86-- 90</p>', () => {
+        when('the command is executed', () => {
+            beforeEach(clickCleanup);
+
+            it('should add spacing and an endash', () => {
+                return scribeNode.getInnerHTML().then((innerHTML) => {
+                    expect(innerHTML).to.include('<p>happy – ending mother-in-law 1923 – 1926 <i>Hello – Joe Smith</i></p><p>Pages 86 – 90</p>');
+                })
+            });
+        })
+    });
+
+
 });
