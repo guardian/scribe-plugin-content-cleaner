@@ -26,66 +26,6 @@ function clickCleanup() {
 }
 
 describe('scribe-plugin-content-cleaner', () => {
-    givenContentOf('<p>content -- </p>', () => {
-        when('the command is executed', () => {
-            beforeEach(clickCleanup);
-
-            it('should replace the -- with an endash', () => {
-                return scribeNode.getInnerHTML().then((innerHTML) => {
-                    expect(innerHTML).to.include('<p>content – </p>');
-                });
-            });
-        });
-    });
-
-    givenContentOf('<p>1900 - 1950</p>', () => {
-        when('the command is executed', () => {
-            beforeEach(clickCleanup);
-
-            it('should add spacing and an endash', () => {
-                return scribeNode.getInnerHTML().then((innerHTML) => {
-                    expect(innerHTML).to.include('<p>1900 – 1950</p>');
-                })
-            });
-        })
-    });
-
-
-    givenContentOf('<p>1900 -- 1950</p>', () => {
-        when('the command is executed', () => {
-            beforeEach(clickCleanup);
-
-            it('should add spacing and an endash', () => {
-                return scribeNode.getInnerHTML().then((innerHTML) => {
-                    expect(innerHTML).to.include('<p>1900 – 1950</p>');
-                })
-            });
-        })
-    });
-
-    givenContentOf('<p>1900--1950</p>', () => {
-        when('the command is executed', () => {
-            beforeEach(clickCleanup);
-
-            it('should add spacing and an endash', () => {
-                return scribeNode.getInnerHTML().then((innerHTML) => {
-                    expect(innerHTML).to.include('<p>1900 – 1950</p>');
-                })
-            });
-        })
-    });
-
-    givenContentOf('<p>1900-1950</p>', () => {
-        when('the command is executed', () => {
-            beforeEach(clickCleanup);
-
-            it('should add spacing and an endash', () => {
-                return scribeNode.getInnerHTML().then((innerHTML) => {
-                    expect(innerHTML).to.include('<p>1900 – 1950</p>');
-                })
-            });
-        })
-    });
 
     givenContentOf('<p>word  a   b</p>', () => {
         when('the command is executed', () => {
