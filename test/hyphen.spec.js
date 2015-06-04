@@ -126,15 +126,17 @@ describe('Hyphen cleaining', () => {
         })
     });
 
-    givenContentOf('<p>1607–1833</p>', () => {
-        when('the command is executed', () => {
-            beforeEach(clickCleanup);
+    ['<p>1607–1833</p>', '<p>1607– 1833</p>', '<p>1607 –1833</p>'].forEach((inputString) => {
+        givenContentOf(inputString, () => {
+            when('the command is executed', () => {
+                beforeEach(clickCleanup);
 
-            it('should add spacing and an endash', () => {
-                return scribeNode.getInnerHTML().then((innerHTML) => {
-                    expect(innerHTML).to.include('<p>1607 – 1833</p>');
-                })
-            });
-        })
+                it('should add spacing and an endash', () => {
+                    return scribeNode.getInnerHTML().then((innerHTML) => {
+                        expect(innerHTML).to.include('<p>1607 – 1833</p>');
+                    })
+                });
+            })
+        });
     });
 });
