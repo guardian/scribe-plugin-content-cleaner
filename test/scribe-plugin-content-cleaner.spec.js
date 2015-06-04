@@ -28,9 +28,9 @@ describe('scribe-plugin-content-cleaner', () => {
                 return executeCommand('cleanup');
             });
 
-            it('should replace the -- with an emdash', () => {
+            it('should replace the -- with an endash', () => {
                 return scribeNode.getInnerHTML().then((innerHTML) => {
-                    expect(innerHTML).to.include('<p>content — </p>');
+                    expect(innerHTML).to.include('<p>content – </p>');
                 });
             });
         });
