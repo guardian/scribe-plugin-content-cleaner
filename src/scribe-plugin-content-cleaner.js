@@ -21,12 +21,12 @@ module.exports = function(scribe) {
         },
         (text) => {
             return text.replace(/<p>\s*?<br\s*\/?><\/p>/g, '');
-        }
-    ];
-
-    const tagContentFilters = [
+        },
         (text) => {
-            return text.replace(/(\w)--(\w)/g, " &ndash; ");
+            return text.replace(/(\w)--(\w(?!(ote|tart|nd)))/g, "$1 &ndash; $2");
+        },
+        (text) => {
+            return text.replace(/(\w)-(\w(?!(ote|tart|nd)))/g, "$1 &ndash; $2");
         }
     ];
 
@@ -44,21 +44,7 @@ module.exports = function(scribe) {
                 return fn(val);
             }, content);
 
-            const parser = new DOMParser();
-            const doc = parser.parseFromString(temp, "text/html");
-
-            for( var i = 0; i < doc.body.children.length; i++) {
-                const currentElement = doc.body.children[i];
-                if(currentElement.children === 0) {
-                    const text = currentElement.innerHTML;
-                    var temp = tagContentFilters.reduce((val, fn) => {
-                        return fn(val);
-                        }, text);
-                    currentElement.innerHTML = temp;
-                }
-            }
-
-            scribe.setHTML(doc.body.innerHTML, true);
+            scribe.setHTML(temp, true);
         };
 
         cleanupCommand.queryEnabled = () => {
