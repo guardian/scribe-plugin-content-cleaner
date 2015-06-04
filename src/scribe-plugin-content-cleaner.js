@@ -23,10 +23,10 @@ module.exports = function(scribe) {
             return text.replace(/<p>\s*?<br\s*\/?><\/p>/g, '');
         },
         (text) => {
-            return text.replace(/(\w)--(\w(?!(ote|tart|nd)))/g, "$1 &ndash; $2");
+            return text.replace(/(\w)\s*--\s*(\w(?!(ote\b|tart\b|nd\b)))/g, "$1 &ndash; $2");
         },
         (text) => {
-            return text.replace(/(\w)-(\w(?!(ote|tart|nd)))/g, "$1 &ndash; $2");
+            return text.replace(/(\d)-(\d)/g, "$1 &ndash; $2");
         }
     ];
 

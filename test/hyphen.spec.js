@@ -75,6 +75,32 @@ describe('scribe-plugin-content-cleaner', () => {
         })
     });
 
+
+    givenContentOf('<p>1900 --1950</p>', () => {
+        when('the command is executed', () => {
+            beforeEach(clickCleanup);
+
+            it('should add spacing and an endash', () => {
+                return scribeNode.getInnerHTML().then((innerHTML) => {
+                    expect(innerHTML).to.include('<p>1900 – 1950</p>');
+                })
+            });
+        })
+    });
+
+
+    givenContentOf('<p>1900-- 1950</p>', () => {
+        when('the command is executed', () => {
+            beforeEach(clickCleanup);
+
+            it('should add spacing and an endash', () => {
+                return scribeNode.getInnerHTML().then((innerHTML) => {
+                    expect(innerHTML).to.include('<p>1900 – 1950</p>');
+                })
+            });
+        })
+    });
+
     givenContentOf('<p>1900-1950</p>', () => {
         when('the command is executed', () => {
             beforeEach(clickCleanup);
@@ -82,6 +108,19 @@ describe('scribe-plugin-content-cleaner', () => {
             it('should add spacing and an endash', () => {
                 return scribeNode.getInnerHTML().then((innerHTML) => {
                     expect(innerHTML).to.include('<p>1900 – 1950</p>');
+                })
+            });
+        })
+    });
+
+
+    givenContentOf('<p>happy--ending</p>', () => {
+        when('the command is executed', () => {
+            beforeEach(clickCleanup);
+
+            it('should add spacing and an endash', () => {
+                return scribeNode.getInnerHTML().then((innerHTML) => {
+                    expect(innerHTML).to.include('<p>happy – ending</p>');
                 })
             });
         })
