@@ -4,30 +4,14 @@ module.exports = function(scribe) {
     var COMMAND_NAME = "cleanup";
 
     var filters = [
-        (text) => {
-                return text.replace(/(&nbsp;)/gi, " ");
-        },
-        (text) => {
-            return text.replace(/\s+/g, " ");
-        },
-        (text) => {
-            return text.replace(/ -- /g, " &ndash; ");
-        },
-        (text) => {
-            return text.replace(/ - /g, " &ndash; ");
-        },
-        (text) => {
-            return text.replace(/(<br\s*\/?>){3,}/gi, '<br>');
-        },
-        (text) => {
-            return text.replace(/<p>\s*?<br\s*\/?><\/p>/g, '');
-        },
-        (text) => {
-            return text.replace(/(\w)\s*--\s*(\w(?!(ote\b|tart\b|nd\b)))/g, "$1 &ndash; $2");
-        },
-        (text) => {
-            return text.replace(/(\d)-(\d)/g, "$1 &ndash; $2");
-        },
+        (text) => text.replace(/(&nbsp;)/gi, " "),
+        (text) => text.replace(/\s+/g, " "),
+        (text) => text.replace(/ -- /g, " &ndash; "),
+        (text) => text.replace(/ - /g, " &ndash; "),
+        (text) => text.replace(/(<br\s*\/?>){3,}/gi, '<br>'),
+        (text) => text.replace(/<p>\s*?<br\s*\/?><\/p>/g, ''),
+        (text) => text.replace(/(\w)\s*--\s*(\w(?!(ote\b|tart\b|nd\b)))/g, "$1 &ndash; $2"),
+        (text) => text.replace(/(\d)-(\d)/g, "$1 &ndash; $2"),
         (text) => text.replace(/(\w)<br\s*?>(\w)/g, "$1 $2"),
         (text) => text.replace(/(\w)\s*?–\s*?(\w)/g, "$1 &ndash; $2")
     ];
