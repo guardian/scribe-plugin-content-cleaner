@@ -1,14 +1,12 @@
 {
   "name": "scribe-plugin-content-cleaner",
   "description": "Clean up content in a scribe instance",
-  "version": "0.0.18",
+  "version": "1.0.0",
   "homepage": "https://github.com/guardian/scribe-plugin-content-cleaner",
   "license": "MIT",
   "copyright": "hmgibson23",
   "main": "scribe-plugin-content-cleaner.js",
-  "dependencies": {
-
-  },
+  "dependencies": {},
   "devDependencies": {
     "require": "*",
     "requirejs": "~2.1.16"
