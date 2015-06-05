@@ -11,11 +11,19 @@ module.exports = function (scribe) {
     }, function (text) {
         return text.replace(/\s+/g, " ");
     }, function (text) {
-        return text.replace(/ -- /g, " &mdash; ");
+        return text.replace(/ -- /g, " &ndash; ");
+    }, function (text) {
+        return text.replace(/ - /g, " &ndash; ");
     }, function (text) {
         return text.replace(/(<br\s*\/?>){3,}/gi, "<br>");
     }, function (text) {
         return text.replace(/<p>\s*?<br\s*\/?><\/p>/g, "");
+    }, function (text) {
+        return text.replace(/(\w)\s*--\s*(\w(?!(ote\b|tart\b|nd\b)))/g, "$1 &ndash; $2");
+    }, function (text) {
+        return text.replace(/(\w)<br\s*?>(\w)/g, "$1 $2");
+    }, function (text) {
+        return text.replace(/(\w)\s*?–\s*?(\w)/g, "$1 &ndash; $2");
     }];
 
     return function (scribe) {
