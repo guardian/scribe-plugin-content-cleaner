@@ -53,6 +53,18 @@ describe('scribe-plugin-content-cleaner', () => {
         });
     });
 
+    givenContentOf('<p>head&shy;line at&shy;tacked man&shy;power</p>', () => {
+        when('the command is executed', () => {
+            beforeEach(clickCleanup);
+
+            it('should remove all soft hyphens', () => {
+                return scribeNode.getInnerHTML().then((innerHTML) => {
+                    expect(innerHTML).to.include('<p>headline attacked manpower</p>');
+                });
+            });
+        });
+    });
+
     givenContentOf('<p>word</p><p> </p><p><br></p>', () => {
         when('the command is executed', () => {
             beforeEach(clickCleanup);
