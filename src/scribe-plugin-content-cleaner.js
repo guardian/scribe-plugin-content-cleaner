@@ -18,7 +18,6 @@ module.exports = function(scribe) {
 
 
     return function (scribe) {
-        console.log('Initialising plugin');
         // for now this just exposes a list of
         // commands to do the text cleanup, rather than doing it some
         // weird way with sanitizers
@@ -26,8 +25,6 @@ module.exports = function(scribe) {
 
         cleanupCommand.execute = () => {
             var content = scribe.el.innerHTML;
-
-            console.log(content);
 
             var temp = filters.reduce((val, fn) => {
                 return fn(val);
